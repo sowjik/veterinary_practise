@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_of_visit: MyString
+  pet: MyString
+  customer: MyString
+  reason: MyText
+
+two:
+  date_of_visit: MyString
+  pet: MyString
+  customer: MyString
+  reason: MyText

@@ -1,0 +1,51 @@
+<%= form_for(@pet) do |f| %>
+  <% if @pet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:</h2>
+
+      <ul>
+      <% @pet.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, :pattern => "[a-zA-Z/s ]{1,35}", :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.select :pet_type, Pet::PET_TYPE, {}, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :breed %><br>
+    <%= f.text_field :breed, :pattern => "[a-zA-Z/s ]{1,35}", :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.number_field :age, :in => 0..50, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.number_field :weight, :in => 0..100, :step => 0.1, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :last_visit %><br>
+    <%= f.date_field :last_visit, :class => "datepicker", :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :doctor %><br>
+    <%= f.collection_select(:doctor_id, Doctor.all, :id, :name) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script>
+    $(function() {
+    $( ".datepicker" ).datepicker();
+  });
+</script>
